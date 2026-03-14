@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rudich Chhantel — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1A3C5E;
+      --navy-light: #2A5280;
+      --accent: #C9A84C;
+      --cream: #FAF8F4;
+      --text: #1C1C1C;
+      --muted: #666;
+      --border: #DDD8CE;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(26,60,94,0.97);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
+      font-size: 1.2rem;
+      letter-spacing: 0.5px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: #C8D8E8;
+      text-decoration: none;
+      font-size: 0.875rem;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      padding: 80px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: linear-gradient(135deg, transparent 0%, rgba(201,168,76,0.07) 100%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      width: 100%;
+    }
+    .hero-tag {
+      font-size: 0.78rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-desc {
+      color: #A8C0D8;
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 400px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.8rem;
+      border-radius: 2px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--navy);
+    }
+    .btn-primary:hover { background: #e0be6a; }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: #fff;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Hero right: skill badges */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .skill-group-label {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.5rem;
+    }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .badge {
+      padding: 0.35rem 0.85rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #C8D8E8;
+      font-size: 0.82rem;
+      border-radius: 2px;
+      font-family: 'Source Sans 3', monospace;
+      background: rgba(255,255,255,0.04);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .badge:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* SECTIONS */
+    section { padding: 90px 5%; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--navy);
+      margin-bottom: 3rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 50px; height: 3px;
+      background: var(--accent);
+    }
+
+    /* EDUCATION */
+    #education { background: #fff; }
+    .edu-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-degree {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+    .edu-school {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+    .edu-status {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      padding: 0.2rem 0.7rem;
+      background: #EFF4F9;
+      color: var(--navy);
+      border-radius: 2px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* PROJECTS */
+    #projects { background: var(--cream); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      border-radius: 2px;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(26,60,94,0.1);
+      border-color: var(--navy-light);
+    }
+    .project-lang {
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+    }
+    .project-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      flex: 1;
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 1.2rem;
+      color: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .project-link:hover { color: var(--accent); }
+    .project-link svg { width: 14px; height: 14px; }
+
+    /* CONTACT */
+    #contact { background: var(--navy); }
+    #contact .section-title { color: #fff; }
+    #contact .section-label { color: var(--accent); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .contact-text {
+      color: #A8C0D8;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.9;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #C8D8E8;
+      font-size: 0.9rem;
+      transition: border-color 0.2s, color 0.2s;
+      border-radius: 2px;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-link-label { font-size: 0.7rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.35); display: block; }
+
+    /* FOOTER */
+    footer {
+      background: #0F2437;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    /* ANIMATIONS */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">R. Chhantel</div>
+    <ul class="nav-links">
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="hero-tag">Software Engineering Student</p>
+        <h1>Rudich<br><span>Chhantel</span></h1>
+        <p class="hero-desc">Eager to learn new technologies and deliver quality work. BSc (Hons) Computing student at The British College, Kathmandu.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div>
+          <p class="skill-group-label">Languages</p>
+          <div class="badge-row">
+            <span class="badge">Python</span>
+            <span class="badge">Java</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">PHP</span>
+            <span class="badge">SQL</span>
+            <span class="badge">Kotlin</span>
+          </div>
+        </div>
+        <div>
+          <p class="skill-group-label">Frameworks & Tools</p>
+          <div class="badge-row">
+            <span class="badge">React</span>
+            <span class="badge">Node.js</span>
+            <span class="badge">Flask</span>
+            <span class="badge">Flutter</span>
+            <span class="badge">TensorFlow</span>
+            <span class="badge">Git</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-inner">
+      <p class="section-label">Academic Background</p>
+      <h2 class="section-title">Education</h2>
+      <div class="edu-item fade-in">
+        <p class="edu-degree">BSc (Hons) Computing</p>
+        <p class="edu-school">The British College, Kathmandu</p>
+        <span class="edu-status">Currently Ongoing</span>
+      </div>
+      <div class="edu-item fade-in">
+        <p class="edu-degree">+2 Higher Secondary</p>
+        <p class="edu-school">Prasadi Academy</p>
+        <span class="edu-status">Completed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner">
+      <p class="section-label">Work & Builds</p>
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card fade-in">
+          <p class="project-lang">Python · Jupyter Notebook</p>
+          <h3 class="project-name">Smart Farming Assistant</h3>
+          <p class="project-desc">Solo ML project leveraging data science and TensorFlow to assist farmers in making data-driven decisions.</p>
+          <a href="https://github.com/Rudich0/smart-farming-assistant" target="_blank" class="project-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card fade-in">
+          <p class="project-lang">Kotlin · Android</p>
+          <h3 class="project-name">Notes & Reminders</h3>
+          <p class="project-desc">Android app for creating, organising, and managing personal notes and reminders with a clean UI.</p>
+          <a href="https://github.com/Rudich0/Notes-and-Reminders" target="_blank" class="project-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card fade-in">
+          <p class="project-lang">PHP · Web</p>
+          <h3 class="project-name">Election System</h3>
+          <p class="project-desc">Web-based election management platform built with PHP, handling candidate registration and vote processing.</p>
+          <a href="https://github.com/Rudich0/election-system" target="_blank" class="project-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card fade-in">
+          <p class="project-lang">PL/SQL · Database</p>
+          <h3 class="project-name">E-Commerce Platform</h3>
+          <p class="project-desc">Database-driven e-commerce system covering product management, orders, and transactional logic using PL/SQL.</p>
+          <a href="https://github.com/Rudich0/E-commerce" target="_blank" class="project-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card fade-in">
+          <p class="project-lang">C# · Windows Forms</p>
+          <h3 class="project-name">Drawing Application</h3>
+          <p class="project-desc">Documented C# drawing app implementing Factory, Singleton, and Command design patterns for robust architecture.</p>
+          <a href="https://github.com/Rudich0/RudichChhantel_assignment_Documentation" target="_blank" class="project-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card fade-in">
+          <p class="project-lang">Database · Records</p>
+          <h3 class="project-name">Crime Records System</h3>
+          <p class="project-desc">A structured database system for recording and querying crime-related data with a focus on data integrity.</p>
+          <a href="https://github.com/Rudich0/Crime-Records-System" target="_blank" class="project-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid">
+        <p class="contact-text">I'm open to internship opportunities, collaborative projects, and anything interesting in software engineering. Feel free to reach out via email or GitHub.</p>
+        <div class="contact-links">
+          <a href="mailto:rudichchhantel6@gmail.com" class="contact-link">
+            <div>
+              <span class="contact-link-label">Email</span>
+              rudichchhantel6@gmail.com
+            </div>
+          </a>
+          <a href="https://github.com/Rudich0" target="_blank" class="contact-link">
+            <div>
+              <span class="contact-link-label">GitHub</span>
+              github.com/Rudich0
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Rudich Chhantel — Built & hosted on GitHub Pages
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
