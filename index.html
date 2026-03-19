@@ -131,6 +131,22 @@
       flex-direction: column;
       gap: 1.5rem;
     }
+
+    .hero-photo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-photo {
+      width: 320px;
+      height: 380px;
+      object-fit: cover;
+      object-position: top;
+      border: 3px solid var(--accent);
+      box-shadow: 12px 12px 0px rgba(201,168,76,0.25);
+      border-radius: 2px;
+    }
+    
     .skill-group-label {
       font-size: 0.72rem;
       letter-spacing: 2px;
@@ -339,10 +355,15 @@
         <p class="hero-desc">Eager to learn new technologies and deliver quality work. BSc (Hons) Computing student at The British College, Kathmandu.</p>
         <div class="hero-btns">
           <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="Rudich_Chhantel_CV.pdf" download class="btn btn-outline">Download CV</a>
           <a href="#contact" class="btn btn-outline">Get in Touch</a>
         </div>
       </div>
       <div class="hero-right">
+        <div class="hero-photo-wrap">
+          <img src="rudich.jpg" alt="Rudich Chhantel" class="hero-photo" />
+        </div>
+      </div>
         <div>
           <p class="skill-group-label">Languages</p>
           <div class="badge-row">
@@ -469,7 +490,7 @@
           <a href="mailto:rudichchhantel6@gmail.com" class="contact-link">
             <div>
               <span class="contact-link-label">Email</span>
-              rudichchhantel6@gmail.com
+              rudichchhantyal6@gmail.com
             </div>
           </a>
           <a href="https://github.com/Rudich0" target="_blank" class="contact-link">
